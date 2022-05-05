@@ -25,7 +25,7 @@ class AddPFEController extends AbstractController
         if ($form->isSubmitted()) {
             $entityManager->persist($pfe);
             $entityManager->flush();
-            return $this->render('pfe.info.html.twig');
+            return $this->render('pfe.info.html.twig',['pfe' => $pfe]);
         } else {
             return $this->render('add_pfe/index.html.twig', [
                 'form' => $form->createView()
