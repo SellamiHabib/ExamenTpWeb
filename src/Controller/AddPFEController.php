@@ -27,7 +27,7 @@ class AddPFEController extends AbstractController
             $entityManager->flush();
             return $this->render('pfe.info.html.twig');
         } else {
-            return $this->render(':add_pfe:index.html.twig', [
+            return $this->render('add_pfe/index.html.twig', [
                 'form' => $form->createView()
             ]);
         }
