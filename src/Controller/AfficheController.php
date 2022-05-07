@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Entreprise;
+use App\Entity\PFE;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,17 +12,26 @@ use Symfony\Config\Framework\WebLinkConfig;
 
 class AfficheController extends AbstractController
 {
-    #[Route('/affiche', name: 'app_affiche')]
-    public function index(ManagerRegistry $doctrine,): Response
-    {
-    $repo = $doctrine->getRepository(Entreprise::class);
-    $entreprises = $repo->findAll();
-    $array = [];
-        foreach ($entreprises as $entreprise) {
 
-    }
-        return $this->render('affiche/index.html.twig', [
-            'controller_name' => 'AfficheController',
+    #[Route('/stats', name: 'app_stats')]
+    public function index(ManagerRegistry $doctrine,): Response {
+        $repo = $doctrine->getRepository(PFE::class);
+        $PFEparEntreprise = $repo->countPFE();
+
+        return $this->render('stats/index.html.twig', [
+            'PFEparEntreprise' => $PFEparEntreprise
         ]);
     }
+    #[Route('/all', name: 'app_all')]
+    public function afficheAll(ManagerRegistry $doctrine,): Response {
+        $repo = $doctrine->getRepository(PFE::class);
+        $allPFE = $repo->findAll();
+
+        return $this->render('all/index.html.twig', [
+            'listePFE' => $allPFE
+        ]);
+    }
+
+
+
 }

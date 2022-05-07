@@ -13,8 +13,12 @@ class PFE extends Fixture
         $faker = Factory::create();
         for($i = 0 ; $i< 100 ; $i++) {
             $repo = $manager->getRepository(\App\Entity\Entreprise::class);
+
             $random = rand(201,249);
             $entreprise =$repo->findOneBy(['id'=>"$random"], []);
+
+
+
             $pfe = new \App\Entity\PFE();
 
             $pfe->setNomStudent($faker->name);

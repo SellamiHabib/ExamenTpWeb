@@ -50,19 +50,18 @@ class PFERepository extends ServiceEntityRepository
     // /**
     //  * @return PFE[] Returns an array of PFE objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function countPFE()
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
+            ->select('e.Designation','count(p.entreprise)')
+            ->from('App:Entreprise','e')
+            ->andWhere('p.entreprise= e.id')
+            ->groupBy('p.entreprise')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?PFE

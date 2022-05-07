@@ -15,7 +15,6 @@ class Entreprise extends Fixture
             $entr = new \App\Entity\Entreprise();
             $entr->setDesignation($faker->company);
             $manager->persist($entr);
-
         }
         $manager->flush();
 
